@@ -1,0 +1,18 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<h1>Product Search</h1>
+<form method="get" action="{% url 'product_search' %}">
+    <input type="text" name="q" placeholder="Search for products">
+    <button type="submit">Search</button>
+</form>
+{% if products.count > 0 %}
+<ul>
+{% for product in products %}
+    <li><a href="{% url 'product_detail' pk=product.pk %}", style="font-size: larger;">{{ product.name }}</a></li>
+{% endfor %}
+</ul>
+{% else %}
+<p>No products found.</p>
+{% endif %}
+{% endblock content %}
